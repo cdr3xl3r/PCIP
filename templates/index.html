@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCIP Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 80%; margin: auto; }
+        .info-block { margin-bottom: 20px; }
+        .info-title { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PCIP Dashboard - by cdr3x</h1>
+        <div class="info-block">
+            <span class="info-title">System Information:</span> <br>
+            CPU Usage: {{ system_info.cpu_percent }}% <br>
+            Total Memory: {{ system_info.memory }} bytes <br>
+            Available Memory: {{ system_info.available_memory }} bytes
+        </div>
+        <div class="info-block">
+            <span class="info-title">IP Information:</span> <br>
+            Hostname: {{ ip_info.hostname }} <br>
+            IP Address: {{ ip_info.ip_address }} <br>
+            Domain: {{ ip_info.domain }}
+        </div>
+        <div class="info-block">
+            Internet Status: {{ internet_info }}
+        </div>
+        <div class="info-block">
+            Local Time: {{ localTime }}
+        </div>
+        <container>
+            <div class="info-block">
+                <span class="info-title">Network Information:</span> <br>   
+                {% for interface in network_info %}
+                    Interface: {{ interface.name }} <br>
+                    IP Address: {{ interface.ip_address }} <br>
+                    MAC Address: {{ interface.mac_address }} <br>
+                    <br>
+                {% endfor %}
+            </div>
+        </container>
+        <div class="info-block">
+            <span class="info-title
+            ">Disk Information:</span> <br>
+            {% for disk in disk_info %}
+                Disk: {{ disk.mount_point }} <br>
+                Total Space: {{ disk.total }} bytes <br>
+                Used Space: {{ disk.used }} bytes <br>
+                Free Space: {{ disk.free }} bytes <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Services:</span> <br>
+            {% for service in services %}
+                Service: {{ service.name }} <br>
+                Status: {{ service.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Processes:</span> <br>
+            {% for process in processes %}
+                Process: {{ process.name }} <br>
+                Status: {{ process.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Users:</span> <br>
+            {% for user in users %}
+                User: {{ user.name }} <br>
+                Status: {{ user.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Groups:</span> <br>
+            {% for group in groups %}
+                Group: {{ group.name }} <br>
+                Status: {{ group.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Firewall:</span> <br>
+            {% for rule in firewall %}
+                Rule: {{ rule.name }} <br>
+                Status: {{ rule.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Storage:</span> <br>
+            {% for storage in storage %}
+                Storage: {{ storage.name }} <br>
+                Status: {{ storage.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Software:</span> <br>
+            {% for software in software %}
+                Software: {{ software.name }} <br>
+                Status: {{ software.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Hardware:</span> <br>
+            {% for hardware in hardware %}
+                Hardware: {{ hardware.name }} <br>
+                Status: {{ hardware.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Logs:</span> <br>
+            {% for log in logs %}
+                Log: {{ log.name }} <br>
+                Status: {{ log.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Backups:</span> <br>
+            {% for backup in backups %}
+                Backup: {{ backup.name }} <br>
+                Status: {{ backup.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Updates:</span> <br>
+            {% for update in updates %}
+                Update: {{ update.name }} <br>
+                Status: {{ update.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Security:</span> <br>
+            {% for security in security %}
+                Security: {{ security.name }} <br>
+                Status: {{ security.status }} <br>
+                <br>
+            {% endfor %}
+
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Power:</span> <br>
+            {% for power in power %}
+                Power: {{ power.name }} <br>
+                Status: {{ power.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Network:</span> <br>
+            {% for network in network %}
+                Network: {{ network.name }} <br>
+                Status: {{ network.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">System:</span> <br>
+            {% for system in system %}
+                System: {{ system.name }} <br>
+                Status: {{ system.status }} <br>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="info-block">
+            <span class="info-title
+            ">Other:</span> <br>
+            
+    <div class="info-block">
+        <form action="/reboot" method="post">
+            <input type="submit" value="Reboot">
+        </form>
+        <form action="/shutdown" method="post">
+            <input type="submit" value="Shutdown">
+        </form>
+    </div>
+    </div>
+</body>
+</html>
